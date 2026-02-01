@@ -1,8 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { FallingLeaf } from "./FallingLeaf";
-import { BananaFlower } from "./BananaFlower";
+import Image from "next/image";
 
 const FALL_ANIMATION_CLASSES = [
   "animate-banana-fall-1",
@@ -40,8 +39,8 @@ function buildFallConfig(leftPosition: string, options?: FallConfigOptions) {
   const topOffset = randomBetween(topMin, topMax);
   const driftX = randomBetween(-60, 60);
   const driftAlt = randomBetween(-50, 50);
-  const size = randomBetween(20, 40);
-  const opacity = randomBetween(0.4, 0.75);
+  const size = randomBetween(25, 45);
+  const opacity = randomBetween(0.2, 0.4);
 
   const wrapperStyle: FallStyle = {
     left: leftPosition,
@@ -52,98 +51,114 @@ function buildFallConfig(leftPosition: string, options?: FallConfigOptions) {
     "--fall-delay": `${delay}s`,
   };
 
-  const leafStyle: CSSProperties = {
+  const flowerStyle: CSSProperties = {
     width: `${size}px`,
-    height: `${size * 1.5}px`,
+    height: `${size}px`,
+    opacity,
   };
 
-  return { animationClass, wrapperStyle, leafStyle, opacity };
+  return { animationClass, wrapperStyle, flowerStyle };
+}
+
+function FallingFlower({ style }: { style: CSSProperties }) {
+  return (
+    <Image
+      src="/drop.png"
+      alt=""
+      width={50}
+      height={50}
+      className="object-contain"
+      style={style}
+    />
+  );
 }
 
 export function FallingLeavesAnimation() {
   return (
-    <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-      {/* Left side falling elements */}
+    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
+      {/* Left side falling flowers */}
       {[...Array(6)].map((_, i) => {
         const leftPosition = `${(Math.random() * 20).toFixed(2)}%`;
-        const { animationClass, wrapperStyle, leafStyle, opacity } =
-          buildFallConfig(leftPosition, {
+        const { animationClass, wrapperStyle, flowerStyle } = buildFallConfig(
+          leftPosition,
+          {
             delayRange: [0, 6],
             durationRange: [14, 22],
-          });
+          }
+        );
         return (
           <div
             key={`left-${i}`}
             className={`absolute ${animationClass}`}
             style={wrapperStyle}
           >
-            <FallingLeaf style={{ ...leafStyle, opacity }} />
+            <FallingFlower style={flowerStyle} />
           </div>
         );
       })}
 
-      {/* Right side falling elements */}
+      {/* Right side falling flowers */}
       {[...Array(6)].map((_, i) => {
         const leftPosition = `${(80 + Math.random() * 20).toFixed(2)}%`;
-        const { animationClass, wrapperStyle, leafStyle, opacity } =
-          buildFallConfig(leftPosition, {
+        const { animationClass, wrapperStyle, flowerStyle } = buildFallConfig(
+          leftPosition,
+          {
             delayRange: [0.5, 7],
             durationRange: [15, 24],
-          });
+          }
+        );
         return (
           <div
             key={`right-${i}`}
             className={`absolute ${animationClass}`}
             style={wrapperStyle}
           >
-            <FallingLeaf style={{ ...leafStyle, opacity }} />
+            <FallingFlower style={flowerStyle} />
           </div>
         );
       })}
 
-      {/* Center scattered elements */}
+      {/* Center scattered flowers */}
       {[...Array(4)].map((_, i) => {
         const leftPosition = `${(30 + Math.random() * 40).toFixed(2)}%`;
-        const { animationClass, wrapperStyle, leafStyle, opacity } =
-          buildFallConfig(leftPosition, {
+        const { animationClass, wrapperStyle, flowerStyle } = buildFallConfig(
+          leftPosition,
+          {
             delayRange: [2, 10],
             durationRange: [16, 26],
-          });
-        const isFlower = i % 3 === 0;
+          }
+        );
         return (
           <div
             key={`center-${i}`}
             className={`absolute ${animationClass} hidden sm:block`}
             style={wrapperStyle}
           >
-            {isFlower ? (
-              <BananaFlower style={{ ...leafStyle, opacity: opacity * 0.8 }} />
-            ) : (
-              <FallingLeaf style={{ ...leafStyle, opacity }} />
-            )}
+            <FallingFlower style={flowerStyle} />
           </div>
         );
       })}
 
-      {/* Extra scattered elements */}
+      {/* Extra scattered flowers */}
       {[...Array(5)].map((_, i) => {
         const leftPosition = `${Math.random() * 100}%`;
-        const { animationClass, wrapperStyle, leafStyle, opacity } =
-          buildFallConfig(leftPosition, {
+        const { animationClass, wrapperStyle, flowerStyle } = buildFallConfig(
+          leftPosition,
+          {
             delayRange: [0, 8],
             durationRange: [12, 20],
-          });
+          }
+        );
         return (
           <div
             key={`scattered-${i}`}
             className={`absolute ${animationClass}`}
             style={wrapperStyle}
           >
-            <FallingLeaf style={{ ...leafStyle, opacity: opacity * 0.9 }} />
+            <FallingFlower style={flowerStyle} />
           </div>
         );
       })}
     </div>
   );
 }
-

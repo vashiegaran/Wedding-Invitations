@@ -598,50 +598,111 @@
 /* Infinity symbol animations */
 @keyframes infinity-pulse {
   0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.9;
-  }
-}
-
-@keyframes infinity-glow {
-  0%, 100% {
-    text-shadow: 
-      0 0 10px rgba(184, 134, 11, 0.5),
-      0 0 20px rgba(184, 134, 11, 0.3),
-      0 0 30px rgba(184, 134, 11, 0.2);
-  }
-  50% {
-    text-shadow: 
-      0 0 20px rgba(201, 162, 39, 0.8),
-      0 0 40px rgba(201, 162, 39, 0.5),
-      0 0 60px rgba(201, 162, 39, 0.3);
-  }
-}
-
-@keyframes infinity-color-shift {
-  0%, 100% {
-    color: #B8860B;
+    transform: scale(1) rotate(0deg);
   }
   25% {
-    color: #C9A227;
+    transform: scale(1.08) rotate(2deg);
   }
   50% {
-    color: #DAA520;
+    transform: scale(1.12) rotate(0deg);
   }
   75% {
-    color: #C9A227;
+    transform: scale(1.08) rotate(-2deg);
+  }
+}
+
+@keyframes infinity-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes infinity-glow-img {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(201, 162, 39, 0.4)) drop-shadow(0 2px 4px rgba(93, 46, 12, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(201, 162, 39, 0.7)) drop-shadow(0 0 20px rgba(201, 162, 39, 0.4)) drop-shadow(0 2px 4px rgba(93, 46, 12, 0.2));
+  }
+}
+
+@keyframes infinity-shimmer {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 8px rgba(201, 162, 39, 0.5));
+  }
+  50% {
+    filter: brightness(1.15) drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+  }
+  100% {
+    filter: brightness(1) drop-shadow(0 0 8px rgba(201, 162, 39, 0.5));
   }
 }
 
 .animate-infinity {
-  animation: 
-    infinity-pulse 2s ease-in-out infinite,
-    infinity-glow 2s ease-in-out infinite,
-    infinity-color-shift 4s ease-in-out infinite;
+  animation: infinity-float 3s ease-in-out infinite;
   display: inline-block;
+}
+
+.animate-infinity-img {
+  animation: 
+    infinity-pulse 4s ease-in-out infinite,
+    infinity-shimmer 2.5s ease-in-out infinite;
+}
+
+/* Side flower animation */
+@keyframes flower-sway {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(1deg) translateY(2px);
+  }
+  50% {
+    transform: rotate(-1deg) translateY(4px);
+  }
+  75% {
+    transform: rotate(0.5deg) translateY(2px);
+  }
+}
+
+@keyframes flower-shimmer {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 8px rgba(74, 124, 35, 0.2));
+  }
+  50% {
+    filter: brightness(1.05) drop-shadow(0 0 15px rgba(74, 124, 35, 0.4));
+  }
+}
+
+.animate-flower-sway {
+  animation: flower-sway 6s ease-in-out infinite, flower-shimmer 4s ease-in-out infinite;
+  transform-origin: top right;
+}
+
+/* Corner flower rotation animation - slow spin */
+@keyframes corner-flower-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes corner-flower-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(201, 162, 39, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(201, 162, 39, 0.5));
+  }
+}
+
+.animate-corner-flower {
+  animation: corner-flower-spin 20s linear infinite, corner-flower-glow 3s ease-in-out infinite;
+  transform-origin: center center;
 }
 

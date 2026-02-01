@@ -70,13 +70,82 @@ export default function WeddingInvitation() {
       {/* Golden decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C9A227] to-transparent" />
 
+      {/* Background arch - Top */}
+      <div className="absolute top-0 left-0 right-0 z-[4] pointer-events-none flex justify-center">
+        <Image
+          src="/bg.png"
+          alt="Floral arch background"
+          width={1094}
+          height={1094}
+          className="w-full max-w-none h-auto object-contain opacity-20 scale-[1.18]"
+          priority
+        />
+      </div>
+
+      {/* Deco Image - Top */}
+      {/* <div
+        className="absolute top-0 left-0 right-0 z-[5] pointer-events-none flex justify-center"
+        style={{ opacity: 0.3 }}
+      >
+        <Image
+          src="/deco.png"
+          alt="Decoration"
+          width={600}
+          height={200}
+          className="w-full max-w-2xl h-auto object-contain"
+          priority
+        />
+      </div> */}
+
+      {/* Side Flower - Right Side */}
+      <div
+        className="fixed z-[5] pointer-events-none"
+        style={{
+          top: "60%",
+          right: "-30px",
+          transform: "translateY(-50%) rotate(-20deg) scaleX(-1)",
+          width: "clamp(100px, 20vw, 200px)",
+          opacity: 0.4,
+        }}
+      >
+        {/* <Image
+          src="/new_flower.png"
+          alt="Floral decoration"
+          width={200}
+          height={140}
+          className="w-full h-auto object-contain"
+          priority
+        /> */}
+      </div>
+
+      {/* Side Flower - Left Side */}
+      <div
+        className="fixed z-[5] pointer-events-none"
+        style={{
+          top: "60%",
+          left: "-30px",
+          transform: "translateY(-50%) rotate(20deg)",
+          width: "clamp(100px, 20vw, 200px)",
+          opacity: 0.4,
+        }}
+      >
+        {/* <Image
+          src="/new_flower.png"
+          alt="Floral decoration"
+          width={200}
+          height={140}
+          className="w-full h-auto object-contain"
+          priority
+        /> */}
+      </div>
+
       {/* Main Content */}
       <main className="relative z-10 w-full">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 space-y-4 sm:space-y-6">
+        <div className="max-w-2xl mx-auto px-4 mt-36 sm:mt-40 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12 space-y-4 sm:space-y-6">
           {/* Names with Infinity Symbol */}
           <section className="text-center space-y-0">
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#5D2E0C] leading-none animate-slide-down drop-shadow-sm"
+              className="relative z-10 text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#5D2E0C] leading-none animate-slide-down drop-shadow-sm"
               style={{
                 fontFamily: "'Great Vibes', cursive",
                 textShadow: "2px 2px 4px rgba(93, 46, 12, 0.3)",
@@ -84,17 +153,17 @@ export default function WeddingInvitation() {
             >
               {WEDDING_DATA.couple.groomShort}
             </h1>
-            <p
-              className="text-4xl sm:text-5xl md:text-6xl text-[#996515] py-1 sm:py-2 animate-infinity"
-              style={{
-                fontFamily: "'Great Vibes', cursive",
-                lineHeight: "1",
-              }}
-            >
-              ∞
-            </p>
+            <div className="relative z-10 my-1 sm:my-2">
+              <Image
+                src="/infinite.png"
+                alt="Infinity symbol"
+                width={225}
+                height={224}
+                className="w-14 sm:w-16 md:w-20 h-auto mx-auto"
+              />
+            </div>
             <h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#5D2E0C] leading-none animate-slide-up drop-shadow-sm"
+              className="relative z-10 text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#5D2E0C] leading-none animate-slide-up drop-shadow-sm"
               style={{
                 fontFamily: "'Great Vibes', cursive",
                 textShadow: "2px 2px 4px rgba(93, 46, 12, 0.3)",
@@ -105,16 +174,18 @@ export default function WeddingInvitation() {
           </section>
 
           {/* Couple Photo */}
-          <section className="flex flex-col items-center justify-center gap-3 animate-scale-in">
-            <div className="w-full max-w-[14rem] sm:max-w-[16rem] md:max-w-[18rem] animate-couple-photo">
-              <Image
-                src="/lau_diva.png"
-                alt="Lauvindra and Divashini"
-                width={500}
-                height={500}
-                priority
-                className="w-full h-auto"
-              />
+          <section className="flex flex-col items-center justify-center gap-3 animate-scale-in w-full">
+            <div className="relative w-full flex items-center justify-center">
+              <div className="max-w-[14rem] sm:max-w-[16rem] md:max-w-[18rem] mx-auto animate-couple-photo">
+                <Image
+                  src="/lau_diva.png"
+                  alt="Lauvindra and Divashini"
+                  width={500}
+                  height={500}
+                  priority
+                  className="w-full h-auto mx-auto"
+                />
+              </div>
             </div>
             <MusicPlayer src="/lau_diva.mp3" />
           </section>
