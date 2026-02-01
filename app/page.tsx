@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { MusicPlayer } from "@/components/wedding/MusicPlayer";
 import { FallingLeavesAnimation } from "@/components/wedding/FallingLeavesAnimation";
 
@@ -39,8 +40,45 @@ const WEDDING_DATA = {
 };
 
 export default function WeddingInvitation() {
+  const [easterEggCount, setEasterEggCount] = useState(0);
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleEasterEggClick = () => {
+    setEasterEggCount((prev) => {
+      const next = prev + 1;
+      if (next >= 5) {
+        setShowEasterEgg(true);
+        return 0;
+      }
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    if (!showEasterEgg) return;
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+    }
+    hideTimerRef.current = setTimeout(() => {
+      setShowEasterEgg(false);
+    }, 2200);
+    return () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+      }
+    };
+  }, [showEasterEgg]);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {showEasterEgg && (
+        <div className="fixed inset-0 z-[50] pointer-events-none flex items-center justify-center">
+          <div className="rounded-full bg-[#5D2E0C] text-[#F5E6D3] px-6 py-3 text-base sm:text-lg shadow-xl">
+            Created By Vashie
+          </div>
+        </div>
+      )}
       {/* Light to dark gradient background - warm cream/champagne/gold (horizontal: left to right) */}
       <div
         className="absolute inset-0"
@@ -153,7 +191,12 @@ export default function WeddingInvitation() {
             >
               {WEDDING_DATA.couple.groomShort}
             </h1>
-            <div className="relative z-10 my-1 sm:my-2">
+            <div
+              className="relative z-10 my-1 sm:my-2 cursor-pointer select-none"
+              onClick={handleEasterEggClick}
+              role="button"
+              aria-label="Infinity symbol"
+            >
               <Image
                 src="/infinite.png"
                 alt="Infinity symbol"
@@ -177,14 +220,21 @@ export default function WeddingInvitation() {
           <section className="flex flex-col items-center justify-center gap-3 animate-scale-in w-full">
             <div className="relative w-full flex items-center justify-center">
               <div className="max-w-[14rem] sm:max-w-[16rem] md:max-w-[18rem] mx-auto animate-couple-photo">
-                <Image
-                  src="/lau_diva.png"
-                  alt="Lauvindra and Divashini"
-                  width={500}
-                  height={500}
-                  priority
-                  className="w-full h-auto mx-auto"
-                />
+                <div
+                  className="cursor-pointer select-none"
+                  onClick={handleEasterEggClick}
+                  role="button"
+                  aria-label="Couple photo"
+                >
+                  <Image
+                    src="/lau_diva.png"
+                    alt="Lauvindra and Divashini"
+                    width={500}
+                    height={500}
+                    priority
+                    className="w-full h-auto mx-auto"
+                  />
+                </div>
               </div>
             </div>
             <MusicPlayer src="/lau_diva.mp3" />
