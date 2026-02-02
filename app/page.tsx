@@ -340,7 +340,7 @@ export default function WeddingInvitation() {
                   >
                     Nethi
                   </p>
-                  <div className="flex gap-2 mt-1">
+                  <div className="flex gap-2 mt-1 justify-center">
                     <a
                       href="tel:+60143650752"
                       className="text-[#4A2511] hover:text-[#3D1F0D] transition-colors"
@@ -366,7 +366,7 @@ export default function WeddingInvitation() {
                   >
                     Shankar
                   </p>
-                  <div className="flex gap-2 mt-1">
+                  <div className="flex gap-2 mt-1 justify-center">
                     <a
                       href="tel:+60149441429"
                       className="text-[#4A2511] hover:text-[#3D1F0D] transition-colors"
@@ -463,18 +463,18 @@ export default function WeddingInvitation() {
                     className="text-[#3D1F0D] text-base sm:text-lg font-semibold"
                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
-                    Subra
+                    Vijian
                   </p>
-                  <div className="flex gap-2 mt-1">
+                  <div className="flex gap-2 mt-1 justify-center">
                     <a
-                      href="tel:+60192752414"
+                      href="tel:+60145474928"
                       className="text-[#4A2511] hover:text-[#3D1F0D] transition-colors"
                       title="Call"
                     >
                       📞
                     </a>
                     <a
-                      href="https://wa.me/60192752414"
+                      href="https://wa.me/60145474928"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#4A2511] hover:text-[#3D1F0D] transition-colors"
@@ -489,18 +489,18 @@ export default function WeddingInvitation() {
                     className="text-[#3D1F0D] text-base sm:text-lg font-semibold"
                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
-                    Kumar
+                    Sahratkumar
                   </p>
-                  <div className="flex gap-2 mt-1">
+                  <div className="flex gap-2 mt-1 justify-center">
                     <a
-                      href="tel:+60124002501"
+                      href="tel:+60142177775"
                       className="text-[#4A2511] hover:text-[#3D1F0D] transition-colors"
                       title="Call"
                     >
                       📞
                     </a>
                     <a
-                      href="https://wa.me/60124002501"
+                      href="https://wa.me/60142177775"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#4A2511] hover:text-[#3D1F0D] transition-colors"
